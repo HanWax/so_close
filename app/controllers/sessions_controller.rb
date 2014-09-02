@@ -1,0 +1,19 @@
+class SessionsController < ApplicationController
+	skip_before_filter :ensure_authenticated!
+
+	def create
+		@current_user = User.find_or_create_from_auth_hash(auth_hash)
+		redirect_to '/'
+	end
+
+	def destroy
+		session.clear
+		redirect_to '/'
+	end
+
+	protected
+
+	def auth_hash
+		request.env['omniauth.auth']
+	end
+end
