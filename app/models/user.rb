@@ -1,7 +1,5 @@
 class User < ActiveRecord::Base
 
-	has_one :oauth_credential
-
 	def self.find_or_create_from_auth_hash(auth_hash)
 		# case auth_hash["moves"]
 		# when 'moves'
