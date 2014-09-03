@@ -26,6 +26,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 gem 'spring',        group: :development
 gem 'omniauth'
+gem 'moves'
 gem 'omniauth-moves', :git => 'https://github.com/nickelser/omniauth-moves'
 
 group :development, :test do

@@ -1,5 +1,5 @@
 .controls
   %form
-    = select "user", "user_id", User.all.collect {|p| [p.moves_oauth_credentials.uid, p.id]}, {}, {class: 'user_id'}
+    = select "user", User.all.collect {|p| [p.moves_oauth_credentials.uid, p.id]}, {}, {class: 'user_id'}
     = current_user.moves_oauth_credentials.uid
 <%=current_user.moves_oauth_credentials.uid%>
