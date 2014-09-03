@@ -27,20 +27,10 @@ ActiveRecord::Schema.define(version: 20140902180232) do
     t.integer  "user_id"
   end
 
-  create_table "storylines", force: true do |t|
-    t.integer  "user_id"
-    t.date     "story_date"
-    t.json     "moves_data"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "users", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "admin"
     t.string   "uid"
-    t.integer  "user_id"
   end
 
 end
