@@ -38,15 +38,15 @@ class FormattedData
 	def for_all(activities)
 		activities.each_with_index do |val, activity_index|
 
-			track_point = activities[activity_index]['trackPoints']
+			track_points = activities[activity_index]['trackPoints']
 
-			for_each(track_point)
+			get_all(track_points)
 		end
 	end
 
-	def for_each(track_point)
-		track_point.each do |val|
-			@steps <<  track_point
+	def get_all(track_points)
+		track_points.each do |track_point|
+			@steps <<  track_points
 		end
 	end
 

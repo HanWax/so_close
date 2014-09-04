@@ -26,6 +26,10 @@ describe FormattedData do
 
 	end
 
+	context "getting Zoe's places" do
+
+	end
+
 end
 
 
