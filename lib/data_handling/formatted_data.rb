@@ -8,4 +8,8 @@ class FormattedData
 		@json
 	end
 
+	def steps
+		[]
+	end
+
 end
