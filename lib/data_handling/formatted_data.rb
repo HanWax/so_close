@@ -3,6 +3,7 @@ class FormattedData
 	def initialize(raw_data)
 		@raw_data = raw_data
 		@steps = []
+		@places = []
 	end
 
 	def raw_data
@@ -13,41 +14,81 @@ class FormattedData
 		@steps
 	end
 
-	def get_steps
-		from_each_segment
+	def places
+		@places
 	end
 
-	def from_each_segment
+	def format!
 		segments = @raw_data[0]['segments']
+
+		# puts segments.length
+		# count = 0
 
 		segments.each_with_index do |val, segment_index|
 
-			activities = segments[segment_index]['activities']
+			get_steps(segments, segment_index)
+			# get_places(segments, segment_index)
 
-			check_for(activities)
+			# count = count + 1
+			# puts count
 
 		end
+			# puts '*'
 	end
 
-	def check_for(activities)
+	def get_steps(segments, segment_index)
+		activities = segments[segment_index]['activities']
+
 		if activities
-			for_all(activities)
+			get_steps_from(activities)
 		end
 	end
 
-	def for_all(activities)
+	def get_places(segments, segment_index)
+		puts segment_index
+		current_segment = segments[segment_index]
+
+		start_time = current_segment['startTime']
+		end_time = current_segment['endTime']
+
+		place = current_segment['place']
+		# puts place
+
+		get_place_location(place)
+		# lat = place_location['location']['lat']
+		# lon = place_location['lon']
+
+		# place =  {
+		# 	start_time: start_time,
+		# 	end_time: end_time,
+		# 	lat: lat,
+		# 	lon: lon
+		# }
+
+		# @places << place
+	end
+
+	def get_place_location(place)
+		puts place
+		# lat = place['location']
+		# lon = place['lon']
+	end
+
+	def get_steps_from(activities)
 		activities.each_with_index do |val, activity_index|
 
-			track_points = activities[activity_index]['trackPoints']
+			steps = activities[activity_index]['trackPoints']
 
-			get_all(track_points)
+			get_all(steps)
 		end
 	end
 
-	def get_all(track_points)
-		track_points.each do |track_point|
-			track_point['time'] = convert_to_time(track_point['time'])
-			@steps <<  track_point
+	def get_all(steps)
+		steps.each do |step|
+
+			step['time'] = convert_to_time(step['time'])
+			@steps << step
+
 		end
 	end
 
@@ -72,6 +113,5 @@ class FormattedData
 
 		Time.new(year, month, day, hour, minutes, seconds, time_zone)
 	end
-
 
 end

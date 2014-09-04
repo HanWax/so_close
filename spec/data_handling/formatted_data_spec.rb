@@ -20,22 +20,22 @@ describe FormattedData do
 		end
 
 		it "will have all of my steps" do
-			zoe_data.get_steps
+			zoe_data.format!
 			expect(zoe_data.steps.length).to eq 160
 		end
 
 		it "will have a longitude for a step" do
-			zoe_data.get_steps
+			zoe_data.format!
 			expect(zoe_data.steps[0].keys.include? 'lon').to be true
 		end
 
 		it "will have a latitude for a step" do
-			zoe_data.get_steps
+			zoe_data.format!
 			expect(zoe_data.steps[0].keys.include? 'lat').to be true
 		end
 
 		it "will have a time for a step" do
-			zoe_data.get_steps
+			zoe_data.format!
 			expect(zoe_data.steps[0].keys.include? 'time').to be true
 			expect(zoe_data.steps[0]['time']).to be_an_instance_of Time
 		end
@@ -52,9 +52,22 @@ describe FormattedData do
 
 	end
 
-	# context "getting Zoe's places" do
+	context "getting Zoe's places" do
 
-	# end
+		it "starts with an empty array for places" do
+			expect(zoe_data.places).to eq []
+		end
+
+		xit "will have all of my places" do
+			zoe_data.format!
+			puts '*'*20
+			puts zoe_data.places
+			puts zoe_data.places.length
+			expect(zoe_data.places.length).to eq 3
+		end
+
+
+	end
 
 end
 
