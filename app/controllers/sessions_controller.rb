@@ -2,9 +2,17 @@ class SessionsController < ApplicationController
 	skip_before_filter :ensure_authenticated!
 
 	def create
-		@current_user = User.find_or_create_from_auth_hash(auth_hash)
-		session[:user_id] = @current_user.id
-		redirect_to '/'
+		if current_user
+			current_user.add_credentials_with(auth_hash)
+		else
+			create_user
+		end
+
+		if auth_hash[:provider] == "facebook"
+			redirect_to '/auth/moves'
+		else
+			redirect_to '/'
+		end
 	end
 
 	def destroy
@@ -16,5 +24,11 @@ class SessionsController < ApplicationController
 
 	def auth_hash
 		request.env['omniauth.auth']
+	end
+
+	def create_user
+		@current_user = User.find_or_create_from_auth_hash(auth_hash)
+		session[:user_id] = @current_user.id
+		current_user_uid = @current_user.uid
 	end
 end

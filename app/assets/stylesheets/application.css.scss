@@ -13,3 +13,18 @@
  *= require_tree .
  *= require_self
  */
+
+ @import "bootstrap-sprockets";
+ @import "bootstrap";
+
+ body {
+	background: url(arty_mist.png) center center no-repeat fixed;
+	background-size: 100% 100%;
+	font-family: 'Cantarell', sans-serif;
+}
+
+h1, .h1, h2, .h2, h3, .h3 {
+margin-top: 60px;
+margin-bottom: 10px;
+vertical-align: center;
+}

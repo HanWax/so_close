@@ -28,6 +28,11 @@ gem 'spring',        group: :development
 gem 'omniauth'
 gem 'moves'
 gem 'omniauth-moves', :git => 'https://github.com/nickelser/omniauth-moves'
+gem 'omniauth-facebook'
+gem "koala", "~> 1.10.0rc"
+gem 'fb_graph2'
+gem 'fb_graph'
+gem 'httparty'
 
 group :development, :test do
 	gem 'rspec-rails'
