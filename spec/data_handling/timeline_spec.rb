@@ -54,4 +54,25 @@ describe Timeline do
 
 	end
 
+	context "matching steps to timeslots" do
+
+		it 'does not consider a step part of the timeslot if it not is in the same time range' do
+			current_datetime = Time.new(2014, 9, 02, 0, 05, 0, '+01:00')
+			step_time		 = Time.new(2014, 9, 02, 0, 10, 33, '+01:00')
+
+			expect(timeline.belong_to_timeslot?(step_time, current_datetime)).to be false
+		end
+
+		it 'considers a step part of the timeslot if it is in the same time range' do
+			current_datetime = Time.new(2014, 9, 02, 0, 05, 0, '+01:00')
+			step_time		 = Time.new(2014, 9, 02, 0, 05, 33, '+01:00')
+
+			expect(timeline.belong_to_timeslot?(step_time, current_datetime)).to be true
+		end
+
+	end
+
+	context "filling timeslots with steps" do
+	end
+
 end

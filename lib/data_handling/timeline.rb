@@ -44,4 +44,8 @@ class Timeline
 	def next_timeslot(current_datetime)
 		current_datetime + 300
 	end
+
+	def belong_to_timeslot?(step_time, current_datetime)
+		current_datetime <= step_time && step_time < (next_timeslot(current_datetime))
+	end
 end
