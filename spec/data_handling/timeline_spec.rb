@@ -59,14 +59,14 @@ describe Timeline do
 			current_datetime = Time.new(2014, 9, 02, 0, 05, 0, '+01:00')
 			step_time		 = Time.new(2014, 9, 02, 0, 10, 33, '+01:00')
 
-			expect(timeline.belongs_to_timeslot?(step_time, current_datetime)).to be false
+			expect(timeline.step_belongs_to_timeslot?(step_time, current_datetime)).to be false
 		end
 
 		it 'considers a step part of the timeslot if it is in the same time range' do
 			current_datetime = Time.new(2014, 9, 02, 0, 05, 0, '+01:00')
 			step_time		 = Time.new(2014, 9, 02, 0, 05, 33, '+01:00')
 
-			expect(timeline.belongs_to_timeslot?(step_time, current_datetime)).to be true
+			expect(timeline.step_belongs_to_timeslot?(step_time, current_datetime)).to be true
 		end
 
 	end
@@ -75,33 +75,119 @@ describe Timeline do
 
 		before do
 			timeline.make_timeslots_for(current_datetime)
+			@time_slot_at_8_30 = timeline.timeslots[102]
+		end
+
+		it 'should match a step with the correct timeslot' do
+			timeline.get_steps
+
+			step_at_8_30 = Time.new(2014, 9, 02, 8, 30, 8, '+01:00')
+
+			expect(@time_slot_at_8_30['locations'][0]['time']).to eq step_at_8_30
 		end
 
 		it 'should contain steps with latitude' do
 			timeline.get_steps
 
-			first_slot_lat = timeline.timeslots[0]['locations'][0]['lat']
-			expect(first_slot_lat).not_to be nil
+			first_slot = @time_slot_at_8_30['locations'][0]
+			expect(first_slot.keys.include? 'lat').to be true
 		end
 
 		it 'should contain steps with longitude' do
 			timeline.get_steps
 
-			first_slot_lon = timeline.timeslots[0]['locations'][0]['lon']
-			expect(first_slot_lon).not_to be nil
+			first_slot = @time_slot_at_8_30['locations'][0]
+			expect(first_slot.keys.include? 'lon').to be true
 		end
 
 		it 'should contain steps with a time value' do
 			timeline.get_steps
 
-			first_slot_time = timeline.timeslots[0]['locations'][0]['time']
-			expect(first_slot_time).not_to be nil
+			first_slot = @time_slot_at_8_30['locations'][0]
+			expect(first_slot.keys.include? 'time').to be true
+		end
+
+	end
+
+	context 'When matching places a place is invalid if...' do
+
+		it 'the start and end time are less than the the timeslot start' do
+			current_datetime = Time.new(2014, 9, 02, 12, 00, 0, '+01:00')
+			place_startTime	 = Time.new(2014, 9, 02, 10, 0, 0, '+01:00')
+			place_endTime	 = Time.new(2014, 9, 02, 11, 0, 0, '+01:00')
+
+			expect(timeline.place_belongs_to_timeslot?(place_startTime, place_endTime, current_datetime)).to be false
+		end
+
+		it 'the start and end time are greater than the the timeslot end' do
+			current_datetime = Time.new(2014, 9, 02, 0, 05, 0, '+01:00')
+			place_startTime	 = Time.new(2014, 9, 02, 10, 0, 0, '+01:00')
+			place_endTime	 = Time.new(2014, 9, 02, 11, 0, 0, '+01:00')
+
+			expect(timeline.place_belongs_to_timeslot?(place_startTime, place_endTime, current_datetime)).to be false
+		end
+
+	end
+
+	context 'When matching places a place is valid if...' do
+
+		it 'has a startTime that is greater than the timeslot start time and a startTime less than a timeslot end time' do
+			current_datetime = Time.new(2014, 9, 02, 12, 0, 0, '+01:00')
+			place_startTime	 = Time.new(2014, 9, 02, 12, 02, 0, '+01:00')
+			place_endTime	 = Time.new(2014, 9, 02, 12, 15, 0, '+01:00')
+
+			expect(timeline.place_belongs_to_timeslot?(place_startTime, place_endTime, current_datetime)).to be true
+		end
+
+		it 'has a startTime that is equal to the timeslot start time and a startTime less than a timeslot end time' do
+			current_datetime = Time.new(2014, 9, 02, 12, 0, 0, '+01:00')
+			place_startTime	 = Time.new(2014, 9, 02, 12, 00, 0, '+01:00')
+			place_endTime	 = Time.new(2014, 9, 02, 12, 15, 0, '+01:00')
+
+			expect(timeline.place_belongs_to_timeslot?(place_startTime, place_endTime, current_datetime)).to be true
+		end
+
+		it 'has a startTime less than the timeslot start time and a endTime greater than a timeslot start time' do
+			current_datetime = Time.new(2014, 9, 02, 12, 0, 0, '+01:00')
+			place_startTime	 = Time.new(2014, 9, 02, 11, 00, 0, '+01:00')
+			place_endTime	 = Time.new(2014, 9, 02, 12, 15, 0, '+01:00')
+
+			expect(timeline.place_belongs_to_timeslot?(place_startTime, place_endTime, current_datetime)).to be true
+		end
+
+	end
+
+
+	context "filling timeslots with places" do
+
+		before do
+			timeline.make_timeslots_for(current_datetime)
+		end
+
+		it 'should contain places with a startTime value' do
+			timeline.get_places
+
+			slot_time = timeline.timeslots[101]['locations'][0]['startTime']
+			expect(slot_time).not_to be nil
+		end
+
+	end
+
+	context "print our stuff - helper set up" do
+
+		before do
+			timeline.make_timeslots_for(current_datetime)
+			timeline.get_steps
+			timeline.get_places
+		end
+
+		xit 'prints' do
+			timeline.print_all
 		end
 
 	end
 
 end
-
 
 
 
