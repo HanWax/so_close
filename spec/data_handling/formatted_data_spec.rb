@@ -37,7 +37,6 @@ describe FormattedData do
 		it "will have a time for a step" do
 			zoe_data.format!
 			expect(zoe_data.steps[0].keys.include? 'time').to be true
-			expect(zoe_data.steps[0]['time']).to be_an_instance_of Time
 		end
 
 	end
@@ -48,23 +47,50 @@ describe FormattedData do
 			expect(zoe_data.places).to eq []
 		end
 
-		xit "will have all of my places" do
+		it "will have all of my places" do
 			zoe_data.format!
-			puts '*'*20
-			puts zoe_data.places
-			puts zoe_data.places.length
 			expect(zoe_data.places.length).to eq 3
 		end
 
+		it "will have a latitude for a place" do
+			zoe_data.format!
+			expect(zoe_data.places[0].keys.include? 'lat').to be true
+		end
+
+		it "will have a longitude for a place" do
+			zoe_data.format!
+			expect(zoe_data.places[0].keys.include? 'lon').to be true
+		end
+
+		it "will have a start time for a place" do
+			zoe_data.format!
+			expect(zoe_data.places[0].keys.include? 'startTime').to be true
+		end
+
+		it "will have a end time for a place" do
+			zoe_data.format!
+			expect(zoe_data.places[0].keys.include? 'endTime').to be true
+		end
 
 	end
 
 	context 'converting time' do
 
+		it "will convert time for a step to a Time object" do
+			zoe_data.format!
+			expect(zoe_data.steps[0]['time']).to be_an_instance_of Time
+		end
+
+		it "will convert Start and End time to a Time object" do
+			zoe_data.format!
+			expect(zoe_data.places[0]['startTime']).to be_an_instance_of Time
+			expect(zoe_data.places[0]['endTime']).to be_an_instance_of Time
+		end
+
 		it 'will return a time object given a string' do
 			time_stamp = "20140902T083008+0100"
 			time_object = Time.new(2014, 9, 2, 8, 30, 8, '+01:00')
-			expect(zoe_data.convert_to_time(time_stamp)).to eq time_object
+			expect(zoe_data.convert_to_time_obj(time_stamp)).to eq time_object
 		end
 
 	end

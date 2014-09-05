@@ -28,9 +28,28 @@ class FormattedData
 		segments.each_with_index do |val, segment_index|
 
 			get_steps(segments, segment_index)
-			# get_places(segments, segment_index)
+			get_places(segments, segment_index)
 
 		end
+	end
+
+	def get_places(segments, segment_index)
+		current_segment = segments[segment_index]
+		segment_type = current_segment['type']
+
+		if segment_type == 'place'
+			get_place_info(current_segment)
+		end
+	end
+
+	def get_place_info(current_segment)
+		lat = current_segment['place']['location']['lat']
+		lon = current_segment['place']['location']['lon']
+		startTime = convert_to_time_obj(current_segment['startTime'])
+		endTime = convert_to_time_obj(current_segment['endTime'])
+
+		place = {'lat'=>lat,'lon'=>lon,  'startTime'=>startTime, 'endTime'=>endTime}
+		@places << place
 	end
 
 	def get_steps(segments, segment_index)
@@ -53,7 +72,7 @@ class FormattedData
 	def get_all(steps)
 		steps.each do |step|
 
-			step['time'] = convert_to_time(step['time'])
+			step['time'] = convert_to_time_obj(step['time'])
 			@steps << step
 
 		end

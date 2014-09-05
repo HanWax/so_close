@@ -1,6 +1,6 @@
 module ConvertTimeStamp
 
-	def convert_to_time(time_stamp)
+	def convert_to_time_obj(time_stamp)
 		# example time stamp: "20140902T083008+0100"
 		# split as follows: 2014 09 02 T 08 30 08 +01 00
 		# collects within (), returns series of 'matches', numbered in sequential order
