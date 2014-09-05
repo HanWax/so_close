@@ -45,7 +45,40 @@ class Timeline
 		current_datetime + 300
 	end
 
-	def belong_to_timeslot?(step_time, current_datetime)
+	def belongs_to_timeslot?(step_time, current_datetime)
 		current_datetime <= step_time && step_time < (next_timeslot(current_datetime))
 	end
+
+	def get_steps
+
+		@timeslots.each do |timeslot|
+
+			current_timeslot = timeslot['timeslot_start']
+
+			match_steps_to(current_timeslot)
+
+		end
+
+		# puts @timeslots
+
+	end
+
+	def match_steps_to(current_timeslot)
+
+		@data.steps.each_with_index do |step, index|
+
+			if belongs_to_timeslot?(step['time'], current_timeslot)
+
+				put_into_timeslot(step, index)
+
+			end
+
+		end
+
+	end
+
+	def put_into_timeslot(info, index)
+		@timeslots[index]['locations'] << info
+	end
+
 end
