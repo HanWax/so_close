@@ -8,6 +8,7 @@ class FormattedData
 		@raw_data = raw_data
 		@steps = []
 		@places = []
+		format!
 	end
 
 	def raw_data
