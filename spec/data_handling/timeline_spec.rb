@@ -9,12 +9,39 @@ describe Timeline do
 	let (:zoe_data){ FormattedData.new(response) }
 	let (:timeline){ Timeline.new(zoe_data) }
 
-	it 'should initialize with steps and places' do
+	it 'should initialize with steps' do
 		expect(timeline.steps).to be_an_instance_of Array
 	end
 
 	it 'should initialize with places' do
 		expect(timeline.places).to be_an_instance_of Array
+	end
+
+	it 'should initialize with an empty timeline' do
+		expect(timeline.output).to eq []
+	end
+
+	context 'creating timeslots' do
+
+		let (:current_date){ Time.new(2014, 9, 02, 0, 0, 0, '+01:00') } # for this data anyway...
+
+		it 'should give us an array of 5 minute timeslots over the course of a day' do
+			timeslots_in_a_date = (12 * 24) # 12 timeslots in an hour, 5 x 12 = 60 minutes, times by hours in a day
+
+			timeline.make_timeslots_for(current_date)
+			expect(timeline.timeslots.length).to eq timeslots_in_a_date
+		end
+
+		it 'should know the next day' do
+			next_date = Time.new(2014, 9, 03, 0, 0, 0, '+01:00')
+			expect(timeline.day_after(current_date)).to eq next_date
+		end
+
+		it 'should know what the next timeslot is' do
+			next_timeslot = Time.new(2014, 9, 02, 0, 05, 0, '+01:00')
+			expect(timeline.next_timeslot(current_date)).to eq next_timeslot
+		end
+
 	end
 
 end
