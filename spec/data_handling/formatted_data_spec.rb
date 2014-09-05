@@ -1,5 +1,4 @@
 require 'rails_helper'
-# require_relative './helpers/zoe_response'
 require './lib/data_handling/formatted_data'
 
 
@@ -96,9 +95,3 @@ describe FormattedData do
 	end
 
 end
-
-
-
-	# data_hash[0]['segments']
-	# [1]['activities'][0]['trackPoints']
-
