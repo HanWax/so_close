@@ -21,13 +21,18 @@ class Timeline
 		@timeslots
 	end
 
-	def make_timeslots_for(current_date)
+	def make_timeslots_for(current_datetime)
 
-		next_date = day_after(current_date)
+		next_date = day_after(current_datetime)
 
-		while current_date != next_date do
-			@timeslots << current_date
-			current_date = next_timeslot(current_date)
+		while current_datetime != next_date do
+
+			timeslot_structure = { 'timeslot_start' => current_datetime, 'locations' => [] }
+
+			@timeslots << timeslot_structure
+
+			current_datetime = next_timeslot(current_datetime)
+
 		end
 
 	end
@@ -36,7 +41,7 @@ class Timeline
 		current_date + (60 * 60 * 24)
 	end
 
-	def next_timeslot(current_date)
-		current_date + 300
+	def next_timeslot(current_datetime)
+		current_datetime + 300
 	end
 end

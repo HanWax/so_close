@@ -32,6 +32,16 @@ describe Timeline do
 			expect(timeline.timeslots.length).to eq timeslots_in_a_date
 		end
 
+		it 'should put the timeslot in a hash' do
+			timeline.make_timeslots_for(current_date)
+			expect(timeline.timeslots[0].keys.include? 'timeslot_start').to be true
+		end
+
+		it 'should have a locations array for each timeslot' do
+			timeline.make_timeslots_for(current_date)
+			expect(timeline.timeslots[0]['locations']).to eq []
+		end
+
 		it 'should know the next day' do
 			next_date = Time.new(2014, 9, 03, 0, 0, 0, '+01:00')
 			expect(timeline.day_after(current_date)).to eq next_date
