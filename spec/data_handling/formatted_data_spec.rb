@@ -42,16 +42,6 @@ describe FormattedData do
 
 	end
 
-	context 'converting time' do
-
-	  it 'will return a time object given a string' do
-	  	time_stamp = "20140902T083008+0100"
-	  	time_object = Time.new(2014, 9, 2, 8, 30, 8, '+01:00')
-	  	expect(zoe_data.convert_to_time(time_stamp)).to eq time_object
-	  end
-
-	end
-
 	context "getting Zoe's places" do
 
 		it "starts with an empty array for places" do
@@ -66,6 +56,16 @@ describe FormattedData do
 			expect(zoe_data.places.length).to eq 3
 		end
 
+
+	end
+
+	context 'converting time' do
+
+		it 'will return a time object given a string' do
+			time_stamp = "20140902T083008+0100"
+			time_object = Time.new(2014, 9, 2, 8, 30, 8, '+01:00')
+			expect(zoe_data.convert_to_time(time_stamp)).to eq time_object
+		end
 
 	end
 
