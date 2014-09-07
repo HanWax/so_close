@@ -32,6 +32,7 @@ class User < ActiveRecord::Base
 		credentials.save!
 	end
 
+	has_many :misses
 	has_many :identities
 	has_one :moves_oauth_credentials
 	has_many :oauth_credentials, class_name: ::OauthCredentials
