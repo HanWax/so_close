@@ -44,5 +44,6 @@ describe 'logging in with Moves', js:true do
 		puts "Please enter the following PIN " + find(:css, '.pincode').text
 		gets
 		expect(current_url).to eq 'http://localhost:5000/'
+		# 	end
 	end
 end
