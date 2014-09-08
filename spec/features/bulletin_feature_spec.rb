@@ -14,6 +14,8 @@ describe 'bulletins' do
 
 	context 'with misses' do
 
+		before { create }
+
 		it 'will display a bulletin with any misses' do
 			visit '/'
 			expect(page).to have_content 'blah blah blah'
