@@ -9,6 +9,9 @@ class SessionsController < ApplicationController
 		end
 
 		if auth_hash[:provider] == "facebook"
+			# raise 'hello'
+			# OmniAuth.config.test_mode = false
+
 			redirect_to '/auth/moves'
 		else
 			redirect_to '/'

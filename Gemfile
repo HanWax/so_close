@@ -41,8 +41,11 @@ group :development, :test do
 	gem 'warden'
 	gem "factory_girl_rails", "~> 4.0"
 	gem "launchy"
+	gem 'poltergeist'
+	gem 'database_cleaner'
 end
 
+gem 'thin'
 gem 'rails_12factor', group: :production
 
 gem 'bootstrap-sass'

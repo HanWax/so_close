@@ -1,15 +1,21 @@
-# require 'rails_helper'
+require 'rails_helper'
 
-# before do
-# 	request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:moves]
-# end
+OmniAuth.config.test_mode = true
+OmniAuth.config.mock_auth[:moves] = OmniAuth::AuthHash.new(
+	{
+		:uid => '123456789',
+		:credentials => { :token => '12345', :expires_at => 1.week.from_now }
+	}
+)
 
-# describe "access page" do
-# 	it "can sign in user with Moves account" do
-# 		visit '/auth/moves'
-# 		expect(page).to have_content("Open Moves on your phone")
-# 		mock_auth_hash
-# 		expect(page).to have_content("Homepage")  # user name
-# 		expect(page).to have_content('User 3 is authenticated.')
-# 	end
-# end
+
+describe "access page" do
+	before do
+		User.create(uid: '123456789')
+	end
+
+	it "can sign in user with Moves account" do
+		visit '/auth/moves'
+		expect(page).to have_link 'Log out'
+	end
+end

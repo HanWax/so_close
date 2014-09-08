@@ -6,7 +6,7 @@ describe 'bulletins' do
 
 		it "will display a concerned message" do
 			visit '/'
-			save_and_open_page
+			# save_and_open_page
 			expect(page).to have_content 'Wow, you need to get out more dude. Like seriously...'
 		end
 
