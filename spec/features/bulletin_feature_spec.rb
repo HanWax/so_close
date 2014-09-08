@@ -1,32 +1,43 @@
-# require 'rails_helper'
+require 'rails_helper'
 
-# describe 'bulletins' do
+	describe 'bulletins' do
 
-# 	context 'without misses' do
+		before(:all) do
+			OmniAuth.config.test_mode = true
+			OmniAuth.config.mock_auth[:moves] = OmniAuth::AuthHash.new(
+				{
+					:uid => '123456789',
+					:credentials => { :token => '12345', :expires_at => 1.week.from_now }
+				}
+			)
 
-# 		it "will display a concerned message" do
-# 			visit '/'
-# 			# save_and_open_page
-# 			expect(page).to have_content 'Wow, you need to get out more dude. Like seriously...'
-# 		end
-
-# 	end
-
-# 	context 'with misses' do
-
-<<<<<<< HEAD
-		before { create }
-
-		it 'will display a bulletin with any misses' do
-			visit '/'
-			expect(page).to have_content 'blah blah blah'
 		end
-=======
-# 		it 'will display a bulletin with any misses' do
-# 			visit '/'
-# 			expect(page).to have_content 'blah blah blah'
-# 		end
->>>>>>> 86bd678488db92ebe412f2358851c33ae9766b2a
 
-# 	end
-# end
+		after(:all) do
+			OmniAuth.config.test_mode = false
+		end
+
+		before do
+			User.create(uid: '123456789')
+		end
+
+		context 'without misses' do
+
+			it "will display a concerned message" do
+				visit '/auth/moves'
+				visit '/bulletins'
+				expect(page).to have_content 'Wow, you need to get out more dude. Like seriously...'
+			end
+
+		end
+
+		context 'with misses' do
+
+			it 'will display a bulletin with any misses' do
+				visit '/bulletins'
+				expect(page).to have_content '200m'
+			end
+
+		end
+	end
+

@@ -1,0 +1,13 @@
+<% if current_user %>
+	<% if @misses.empty? %>
+		<h3> 'Wow, you need to get out more dude. Like seriously...' </h3>
+
+	<% end %>
+
+<% @misses.each do |miss| %>
+<h1>Yesterday you missed Boris by a mere <%= miss.distance %> at <%= miss.time %></h1>
+<% end %>
+
+
+
+<% end %>

@@ -6,6 +6,7 @@ class CompareTimelines
 		@outer_limit = outer_limit
 		@inner_limit = inner_limit
 		@misses = []
+		compare_timelines(timeline_a, timeline_b)
 	end
 
 	def deg2rad(lat, lon) # converts degrees to radians
@@ -97,7 +98,7 @@ class CompareTimelines
 		# puts "#{timeslot_start} : #{distance_between}"
 		# puts 
 		# # misses << Miss.new(distance_between, timeslot_start)
-		@misses << timeslot_start
+		@misses << Miss.new(distance: distance_between, time: timeslot_start, user_id: @current_user.id, neighbour_id: @neighbour.id)
 		# puts @misses.length
 	end
 

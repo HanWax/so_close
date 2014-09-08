@@ -2,7 +2,5 @@
 
 FactoryGirl.define do
   factory :miss do
-    distance ""
-    time ""
   end
 end
