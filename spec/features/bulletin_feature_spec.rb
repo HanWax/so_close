@@ -14,10 +14,19 @@
 
 # 	context 'with misses' do
 
+<<<<<<< HEAD
+		before { create }
+
+		it 'will display a bulletin with any misses' do
+			visit '/'
+			expect(page).to have_content 'blah blah blah'
+		end
+=======
 # 		it 'will display a bulletin with any misses' do
 # 			visit '/'
 # 			expect(page).to have_content 'blah blah blah'
 # 		end
+>>>>>>> 86bd678488db92ebe412f2358851c33ae9766b2a
 
 # 	end
 # end
