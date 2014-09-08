@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140904123452) do
+ActiveRecord::Schema.define(version: 20140907140159) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,12 @@ ActiveRecord::Schema.define(version: 20140904123452) do
   create_table "identities", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "misses", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   create_table "oauth_credentials", force: true do |t|
@@ -32,20 +38,11 @@ ActiveRecord::Schema.define(version: 20140904123452) do
     t.integer  "user_id"
   end
 
-  create_table "storylines", force: true do |t|
-    t.integer  "user_id"
-    t.date     "story_date"
-    t.json     "moves_data"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "users", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "admin"
     t.string   "uid"
-    t.integer  "user_id"
+    t.integer  "miss_id"
   end
 
 end

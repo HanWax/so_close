@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
 			refresh_token: auth_hash["credentials"]["refresh_token"],
 			expires_at: Time.at(auth_hash["credentials"]["expires_at"]),
 		}
-		credentials.user ||= User.create
+		credentials.user ||= User.create(uid: uid)
 		credentials.save!
 		# else
 		# 	raise "unknown provider!"
@@ -28,10 +28,11 @@ class User < ActiveRecord::Base
 			refresh_token: auth_hash["credentials"]["refresh_token"],
 			expires_at: Time.at(auth_hash["credentials"]["expires_at"]),
 		}
-		credentials.user= self
+		credentials.user = self
 		credentials.save!
 	end
 
+	has_many :misses
 	has_many :identities
 	has_one :moves_oauth_credentials
 	has_many :oauth_credentials, class_name: ::OauthCredentials
