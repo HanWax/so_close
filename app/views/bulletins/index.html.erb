@@ -4,10 +4,6 @@
 
 	<% end %>
 
-<% @misses.each do |miss| %>
-<h1>Yesterday you missed Boris by a mere <%= miss.distance %> at <%= miss.time %></h1>
-<% end %>
-
-
+<h1><%= @bulletin.message_randomizer %></h1>
 
 <% end %>

@@ -2,6 +2,7 @@ require Rails.root.join('lib', 'data_handling', 'formatted_data.rb')
 require Rails.root.join('lib', 'data_handling', 'compare_timelines.rb')
 require Rails.root.join('lib', 'data_handling', 'timeline.rb')
 require Rails.root.join('lib', 'data_handling', 'convert_timestamp.rb')
+require Rails.root.join('lib', 'bulletin.rb')
 
 class BulletinsController < ApplicationController
 
@@ -29,6 +30,7 @@ class BulletinsController < ApplicationController
 	 	@comparison =  CompareTimelines.new(timeline_a: @neighbour_timeline, timeline_b: @current_user_timeline)
 	 	@comparison.misses <<   Miss.new(distance: 0.1, time: Time.now, user_id: current_user.id, neighbour_id: @neighbour.id)
 	 	@misses = @comparison.misses
+	 	# @bulletin = Bulletin.new(current_user.id, @neighbour.id, 12, 50)
 
 	 end
 
