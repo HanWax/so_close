@@ -1,8 +1,8 @@
 class Bulletin
 
 	def initialize(miss)
-		@user1 = miss.user_id
-		@user2 = miss.neighbour_id
+		@user1 = miss.user.name
+		@user2 = miss.neighbour.name
 		@time = miss.time.hour
 		@distance = miss.distance
 	end
@@ -12,8 +12,8 @@ class Bulletin
 	def message_randomizer(selection = randomize)
 		time = time_converter(@time)
 		distance = distance_converter(@distance)
-		["Your pursuit of #{@user2} lead you to within #{@distance}, but alas they evaded your advances once more",
-		 "#{@user1}, narrowly avoided the clasps of cloaked assassin #{@user2}", "#{@time} #{@user1} averted a social disaster by sidestepping recent love interest #{@user2}’s path", "Take Care! #{@time} #{@user2} almost caught sight of you (don’t forget about that restraining order!)", "Faire attention! #{@user2} got within #{@distance} of you, and they’re looking for revenge.", "#{@user1} and #{@user2} were a mere #{@distance} from crossing paths on the battlefield, the duel the world is waiting for will have to wait another day.", "Just #{@distance} separated you and your arch-nemesis #{@user2}. Keep safe...", "Your pursuit of #{@user2} lead you to within #{@distance}, but alas they evaded your advances once more", "Despite #{@user1}'s Achilles-like endurance, #{@user2} was just too quick to catch, just #{@distance} separated our two heroes", "#{@time}, #{@user2} looked set to bump into #{@user1}, but with the distance between them at but #{@distance}, a twist of fate pulled them in different directions. #{@user2} must act quickly, #{@user1} is scheduled to board the ferry back to Biarritz any day now..."][selection]
+		["Your pursuit of #{@user2} lead you to within #{distance}, but alas they evaded your advances once more",
+		 "#{@user1}, narrowly avoided the clasps of cloaked assassin #{@user2}", "#{time} #{@user1} averted a social disaster by sidestepping recent love interest #{@user2}’s path", "Take Care! #{time} #{@user2} almost caught sight of you (don’t forget about that restraining order!)", "Faire attention! #{@user2} got within #{distance} of you, and they’re looking for revenge.", "#{@user1} and #{@user2} were a mere #{distance} from crossing paths on the battlefield, the duel the world is waiting for will have to wait another day.", "Just #{distance} separated you and your arch-nemesis #{@user2}. Keep safe...", "Your pursuit of #{@user2} lead you to within #{distance}, but alas they evaded your advances once more", "Despite #{@user1}'s Achilles-like endurance, #{@user2} was just too quick to catch, just #{distance} separated our two heroes", "#{time}, #{@user2} looked set to bump into #{@user1}, but with the distance between them at but #{distance}, a twist of fate pulled them in different directions. #{@user2} must act quickly, #{@user1} is scheduled to board the ferry back to Biarritz any day now..."][selection]
 	end
 
 	def time_converter(time)

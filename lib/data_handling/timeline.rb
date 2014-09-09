@@ -16,10 +16,6 @@ class Timeline
 		@data.places
 	end
 
-	def output
-		[]
-	end
-
 	def timeslots
 		@timeslots
 	end
@@ -69,7 +65,7 @@ class Timeline
 		@data.steps.each do |step|
 
 			if step_belongs_to_timeslot?(step['time'], current_timeslot)
-
+				
 				put_into_timeslot(step, timeslot_index)
 
 			end

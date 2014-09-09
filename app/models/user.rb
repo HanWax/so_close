@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
 		uid = auth_hash["uid"].to_s
 		credentials = ::OauthCredentials.find_or_create_by(uid: uid)
 		credentials.attributes = {
+			provider: auth_hash["provider"],
 			token: auth_hash["credentials"]["token"],
 			refresh_token: auth_hash["credentials"]["refresh_token"],
 			expires_at: Time.at(auth_hash["credentials"]["expires_at"]),
@@ -24,12 +25,17 @@ class User < ActiveRecord::Base
 		uid = auth_hash["uid"].to_s
 		credentials = ::OauthCredentials.find_or_create_by(uid: uid)
 		credentials.attributes = {
+			provider: auth_hash["provider"],
 			token: auth_hash["credentials"]["token"],
 			refresh_token: auth_hash["credentials"]["refresh_token"],
 			expires_at: Time.at(auth_hash["credentials"]["expires_at"]),
 		}
 		credentials.user = self
 		credentials.save!
+	end
+
+	def moves_token
+		oauth_credentials.find_by(provider: 'moves').token
 	end
 
 	has_many :misses

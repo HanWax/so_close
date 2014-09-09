@@ -12,7 +12,7 @@ describe CompareTimelines do
 	let (:current_datetime) { Time.new(2014, 9, 02, 0, 0, 0, '+01:00')  }
 	let (:current_user_id)	{ 1 }
 	let (:neighbour_id)		{ 2 }
-	let (:compare)			{ CompareTimelines.new(timeline_a: zoe_timeline, timeline_b: tom_timeline, current_user_id: current_user_id, neighbour_id: neighbour_id) }
+	let (:compare)			{ CompareTimelines.new(timeline_a: zoe_timeline, timeline_b: tom_timeline, current_user: current_user, neighbour: neighbour) }
 
 
 
