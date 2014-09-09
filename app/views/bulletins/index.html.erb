@@ -1,0 +1,9 @@
+<% if current_user %>
+	<% if @misses.empty? %>
+		<h3> 'Wow, you need to get out more dude. Like seriously...' </h3>
+
+	<% end %>
+
+<h1><%= @misses %></h1>
+
+<% end %>

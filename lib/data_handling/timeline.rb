@@ -1,8 +1,11 @@
 class Timeline
 
-	def initialize(data)
+	def initialize(data, date)
 		@data = data
 		@timeslots = []
+		self.make_timeslots_for(date)
+		self.get_steps
+		self.get_places
 	end
 
 	def steps
