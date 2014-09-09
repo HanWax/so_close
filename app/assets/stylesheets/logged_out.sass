@@ -1,0 +1,26 @@
+@import "_branding"
+
+body.logged_out
+	header
+		text-align: center
+
+		figure.logo
+			width: 270px
+			height: 270px
+			margin: 0px auto
+			background: radial-gradient(ellipse at center, rgba(255,255,255,0.2) 0%,rgba(255,255,255,0) 70%,rgba(255,255,255,0) 100%,rgba(255,255,255,0) 102%)
+			img
+				margin: 10px 0px
+				height: 250px
+
+		h1#brand_name
+			font-size: 4.5em
+
+	nav .main_nav
+		text-align: center
+		li a
+			font-size: 2em
+			@extend .pulse-animation
+
+			i.arrow
+				margin-right: -34px
