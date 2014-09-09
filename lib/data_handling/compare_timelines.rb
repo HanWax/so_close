@@ -2,10 +2,12 @@ include Math
 
 class CompareTimelines
 
-	def initialize(timeline_a: timeline_a, timeline_b: timeline_b, outer_limit: 0.2, inner_limit: 0.02)
+	def initialize(timeline_a: timeline_a, timeline_b: timeline_b, current_user_id: current_user_id, neighbour_id: neighbour_id, outer_limit: 0.2, inner_limit: 0.02)
 		@outer_limit = outer_limit
 		@inner_limit = inner_limit
 		@misses = []
+		@current_user_id = current_user_id
+		@neighbour_id = neighbour_id
 		compare_timelines(timeline_a, timeline_b)
 	end
 
@@ -96,9 +98,8 @@ class CompareTimelines
 
 	def register_miss(distance_between, timeslot_start)
 		# puts "#{timeslot_start} : #{distance_between}"
-		# puts 
 		# # misses << Miss.new(distance_between, timeslot_start)
-		@misses << Miss.new(distance: distance_between, time: timeslot_start, user_id: @current_user.id, neighbour_id: @neighbour.id)
+		@misses << Miss.new(distance: distance_between, time: timeslot_start, user_id: @current_user_id, neighbour_id: @neighbour_id)
 		# puts @misses.length
 	end
 

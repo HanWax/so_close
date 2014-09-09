@@ -1,14 +1,14 @@
 require 'rails_helper'
 
 describe 'logging in with FB', js: true do
-	it 'shows the FB login screen' do
+	xit 'shows the FB login screen' do
 		visit 'http://localhost:5000/'
 		click_link 'Sign in'
 		sleep 5
 		expect(page).to have_content 'Facebook Login'
 	end
 
-	it 'shows the Moves login screen after a FB login' do
+	xit 'shows the Moves login screen after a FB login' do
 		visit 'http://localhost:5000/'
 		click_link 'Sign in'
 		sleep 5
@@ -18,7 +18,7 @@ describe 'logging in with FB', js: true do
 		expect(page).to have_content 'Moves'
 	end
 
-	it 'does not show moves login if FB login password is not valid' do
+	xit 'does not show moves login if FB login password is not valid' do
 		visit 'http://localhost:5000/'
 		click_link 'Sign in'
 		sleep 5

@@ -27,8 +27,8 @@ class BulletinsController < ApplicationController
 	 	neighbour_moves = Moves::Client.new(@neighbour.oauth_credentials.last.token)
 	 	@neighbour_timeline = Timeline.new(FormattedData.new(neighbour_moves.daily_storyline(:trackPoints => true)), Time.new(2014, 9, 2, 0, 0, 0, '+01:00'))
 
-	 	@comparison =  CompareTimelines.new(timeline_a: @neighbour_timeline, timeline_b: @current_user_timeline)
-	 	@comparison.misses <<   Miss.new(distance: 0.1, time: Time.now, user_id: current_user.id, neighbour_id: @neighbour.id)
+	 	@comparison =  CompareTimelines.new(timeline_a: @neighbour_timeline, timeline_b: @current_user_timeline, current_user_id: current_user.id, neighbour_id: @neighbour.id)
+	 	@comparison.misses <<   Miss.create(distance: 0.1, time: Time.now, user_id: current_user.id, neighbour_id: @neighbour.id)
 	 	@misses = @comparison.misses
 	 	# @bulletin = Bulletin.new(current_user.id, @neighbour.id, 12, 50)
 

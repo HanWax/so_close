@@ -10,7 +10,11 @@ describe CompareTimelines do
 	let (:zoe_timeline)		{ Timeline.new(zoe_data, current_datetime) 	}
 	let (:tom_timeline)		{ Timeline.new(tom_data, current_datetime) 	}
 	let (:current_datetime) { Time.new(2014, 9, 02, 0, 0, 0, '+01:00')  }
-	let (:compare)			{ CompareTimelines.new(timeline_a: zoe_timeline, timeline_b: tom_timeline) }
+	let (:current_user_id)	{ 1 }
+	let (:neighbour_id)		{ 2 }
+	let (:compare)			{ CompareTimelines.new(timeline_a: zoe_timeline, timeline_b: tom_timeline, current_user_id: current_user_id, neighbour_id: neighbour_id) }
+
+
 
 		context 'the users positions can be analysed and' do
 
@@ -60,18 +64,9 @@ describe CompareTimelines do
 
  		end
 
- 		context 'in order to compare two timelines an instance of CompareTimelines is instantiated' do
-
- 			it 'with an empty misses array' do 
- 				expect(compare.misses).to eq []
- 			end
-
- 		end
-
  		context 'when comparing timelines, CompareTimelines' do
 
  			it 'registers 83 misses' do
- 				compare.compare_timelines(zoe_timeline, tom_timeline)
  				expect(compare.misses.length).to eq 83
  			end
 
