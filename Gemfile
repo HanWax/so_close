@@ -33,6 +33,7 @@ gem "koala", "~> 1.10.0rc"
 gem 'fb_graph2'
 gem 'fb_graph'
 gem 'httparty'
+gem "acts_as_follower"
 
 group :development, :test do
 	gem 'rspec-rails'
