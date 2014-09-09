@@ -48,7 +48,6 @@ end
 gem 'thin'
 gem 'rails_12factor', group: :production
 
-gem 'bootstrap-sass'
 gem 'autoprefixer-rails'
 gem 'devise'
 gem 'hirb'

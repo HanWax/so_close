@@ -10,7 +10,7 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
   <title>Mist</title>
-  <!-- Bootstrap core CSS -->
+
 </head>
 <body class="<%= "#{controller.controller_name} #{@body_class}".strip %> <%= @current_user ? 'logged_in' : 'logged_out' %>">
 
