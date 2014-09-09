@@ -99,7 +99,7 @@ class CompareTimelines
 	def register_miss(distance_between, timeslot_start)
 		# puts "#{timeslot_start} : #{distance_between}"
 		# # misses << Miss.new(distance_between, timeslot_start)
-		@misses << Miss.new(distance: distance_between, time: timeslot_start, user_id: @current_user_id, neighbour_id: @neighbour_id)
+		@misses <<Miss.create(distance: distance_between, time: timeslot_start, user_id: @current_user_id, neighbour_id: @neighbour_id)
 		# puts @misses.length
 	end
 
