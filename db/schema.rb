@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140907140159) do
+ActiveRecord::Schema.define(version: 20140908160943) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,8 +24,14 @@ ActiveRecord::Schema.define(version: 20140907140159) do
   create_table "misses", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.float    "distance"
+    t.datetime "time"
     t.integer  "user_id"
+    t.integer  "neighbour_id"
   end
+
+  add_index "misses", ["neighbour_id"], name: "index_misses_on_neighbour_id", using: :btree
+  add_index "misses", ["user_id"], name: "index_misses_on_user_id", using: :btree
 
   create_table "oauth_credentials", force: true do |t|
     t.string   "type"
@@ -42,7 +48,6 @@ ActiveRecord::Schema.define(version: 20140907140159) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "uid"
-    t.integer  "miss_id"
   end
 
 end
