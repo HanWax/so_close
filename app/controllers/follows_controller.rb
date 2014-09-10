@@ -10,4 +10,13 @@ class FollowsController < ApplicationController
 		redirect_to '/users'
 	end
 
+	def destroy
+		@user = User.find(params[:user_id])
+		current_user.stop_following(@user)
+		redirect_to '/users'
+	end
+
+	def show
+	end
+
 end

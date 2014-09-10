@@ -8,8 +8,11 @@
   <%= link_to 'Friend', user_follows_path(user), method: :post %>
 <% end %>
 
-<% current_user.all_following.each do |friend| %>
+<% if !current_user.all_following.empty? %>
+	<% current_user.all_following.each do |friend| %>
 
-	<li><%= friend.name %></li>
+		<li><%= friend.name %></li>
+		<%= link_to 'Un-friend', user_follow_path(friend, (current_user.follows.find_by(followable_id: friend.id)).id), method: :delete %>
 
+	<% end %>
 <% end %>
