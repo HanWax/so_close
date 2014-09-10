@@ -4,7 +4,12 @@ Rails.application.routes.draw do
 
   get '/auth/:provider/callback', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy', as: 'logout'
-  get '/users', to: 'users#show', as: 'user'
+  # get '/users', to: 'users#show', as: 'user'
+  resources :users, only: [:index] do
+    resources :follows
+  end
+
+
 
   resources :bulletins
 
