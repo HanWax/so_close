@@ -49,4 +49,8 @@ class User < ActiveRecord::Base
 	def moves
 		@moves ||= Moves::Client.new(moves_oauth_credentials.token)
 	end
+
+	def self.search(query, current_user)
+		where("name ILIKE ?", "%#{query}%").reject {|u| u == current_user }
+	end
 end
