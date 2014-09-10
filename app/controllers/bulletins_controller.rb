@@ -11,30 +11,17 @@ class BulletinsController < ApplicationController
 		users = (User.all)
 		other_users = users.reject {|user| user.id == current_user.id}
 
-		# puts '********************************'
-		# puts current_user.id
-		# puts users.first.id
-		# puts users.last.id
-		# puts other_users.first.id
-		# puts '********************************'
-
-
+		yesterday = Date.today.prev_day
 
 		current_user_moves = Moves::Client.new(current_user.moves_token)
-		@current_user_timeline = Timeline.new(FormattedData.new(current_user_moves.daily_storyline('2014-09-07', :trackPoints => true)), Time.new(2014, 9, 7, 0, 0, 0, '+01:00'))
+		@current_user_timeline = Timeline.new(FormattedData.new(current_user_moves.daily_storyline(yesterday, :trackPoints => true)), yesterday)
 
-		@neighbour = User.find(1)
+		@neighbour = other_users.first
 		neighbour_moves = Moves::Client.new(@neighbour.moves_token)
-		@neighbour_timeline = Timeline.new(FormattedData.new(neighbour_moves.daily_storyline('2014-09-07', :trackPoints => true)), Time.new(2014, 9, 7, 0, 0, 0, '+01:00'))
+		@neighbour_timeline = Timeline.new(FormattedData.new(neighbour_moves.daily_storyline(yesterday, :trackPoints => true)), yesterday)
 
 		@comparison =  CompareTimelines.new(timeline_a: @neighbour_timeline, timeline_b: @current_user_timeline, current_user: current_user, neighbour: @neighbour, outer_limit: 0.2, inner_limit: 0.02)
-		puts '******************'
-		puts @current_user_timeline.print_all
-		puts '******************'
-		puts @current_user.name
-		# Miss.create(distance: 0.1, time: Time.now, user_id: current_user.id, neighbour_id: @neighbour.id)
-		# @misses = @comparison.misses
-		# @bulletin = Bulletin.new(current_user.id, @neighbour.id, 12, 50)
+
 		@bulletins = []
 		current_user.misses.each do | miss |
 			@bulletins << Bulletin.new(miss)
