@@ -1,3 +1,5 @@
+<%= link_to 'Bulletins', bulletins_path %>
+
 <%= form_tag(users_path, :method => "get", id: "search-form") do %>
   <%= text_field_tag :search, params[:search], placeholder: "Search users", required: true %>
   <%= submit_tag "Find friends", :name => nil %>
@@ -11,8 +13,9 @@
 <% if !current_user.all_following.empty? %>
 	<% current_user.all_following.each do |friend| %>
 
-		<li><%= friend.name %></li>
-		<%= link_to 'Un-friend', user_follow_path(friend, (current_user.follows.find_by(followable_id: friend.id)).id), method: :delete %>
-
+		<li><%= friend.name %>
+			<%= link_to 'Un-friend', user_follow_path(friend, (current_user.follows.find_by(followable_id: friend.id)).id), method: :delete %>
+		</li>
 	<% end %>
 <% end %>
+
