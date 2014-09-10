@@ -4,9 +4,20 @@ describe 'bulletins' do
 
 	before(:all) do
 		OmniAuth.config.test_mode = true
+
+		OmniAuth.config.mock_auth[:facebook] = OmniAuth::AuthHash.new(
+			{
+				:provider => :facebook,
+				:uid => '123456789',
+				:info => { :name => 'John Doe '},
+				:credentials => { :token => '12345', :expires_at => 1.week.from_now }
+			}
+		)
+
 		OmniAuth.config.mock_auth[:moves] = OmniAuth::AuthHash.new(
 			{
-				:uid => '123456789',
+				:provider => :moves,
+				:uid => '234567890',
 				:credentials => { :token => '12345', :expires_at => 1.week.from_now }
 			}
 		)
@@ -24,6 +35,9 @@ describe 'bulletins' do
 	context 'without misses' do
 
 		it "will display a concerned message" do
+			# visit 'http://localhost:5000/'
+			# click_link 'Sign in'
+			visit '/auth/facebook'
 			visit '/auth/moves'
 			visit '/bulletins'
 			expect(page).to have_content 'Wow, you need to get out more dude. Like seriously...'

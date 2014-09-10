@@ -1,5 +1,6 @@
 require './lib/data_handling/compare_timelines'
 require './lib/data_handling/timeline'
+require 'rails_helper'
 
 describe CompareTimelines do
 
@@ -12,66 +13,66 @@ describe CompareTimelines do
 	let (:current_datetime) { Time.new(2014, 9, 02, 0, 0, 0, '+01:00')  }
 	let (:current_user_id)	{ 1 }
 	let (:neighbour_id)		{ 2 }
+	let (:current_user)		{double :user, id: 1}
+	let (:neighbour)		{double :user, id: 2}
 	let (:compare)			{ CompareTimelines.new(timeline_a: zoe_timeline, timeline_b: tom_timeline, current_user: current_user, neighbour: neighbour) }
 
 
 
-		context 'the users positions can be analysed and' do
+	context 'the users positions can be analysed and' do
 
-	 		it 'the distance between two users\' co-ordinates can be calculated' do
-	 			zoe_lat = 51.4960936203
-	 			zoe_lon = 0.0129008829
-	 			tom_lat = 51.4957469585
-	 			tom_lon = 0.0125437965
-	 			expect(compare.distance_between(zoe_lat, zoe_lon, tom_lat, tom_lon)).to eq 0.0457669208193625	
-	 		end	
+		it 'the distance between two users\' co-ordinates can be calculated' do
+			zoe_lat = 51.4960936203
+			zoe_lon = 0.0129008829
+			tom_lat = 51.4957469585
+			tom_lon = 0.0125437965
+			expect(compare.distance_between(zoe_lat, zoe_lon, tom_lat, tom_lon)).to eq 0.0457669208193625
+		end
 
-	 		it 'the time between two user\'s timelines can be calculated' do
-	 			zoe_time = Time.new(2014, 9, 02, 0, 0, 0, '+01:00') 
-	 			tom_time = Time.new(2014, 9, 02, 1, 0, 0, '+01:00') 
-	 			expect(compare.time_between(zoe_time, tom_time)).to eq 3600
-	 		end
+		it 'the time between two user\'s timelines can be calculated' do
+			zoe_time = Time.new(2014, 9, 02, 0, 0, 0, '+01:00')
+			tom_time = Time.new(2014, 9, 02, 1, 0, 0, '+01:00')
+			expect(compare.time_between(zoe_time, tom_time)).to eq 3600
+		end
 
- 		end
+	end
 
 
- 		context 'misses should be set within limits' do 
- 			it 'with a distance outer limit' do 
- 				expect(compare.outer_limit).to be_an_instance_of Float
- 			end 
+	context 'misses should be set within limits' do
+		it 'with a distance outer limit' do
+			expect(compare.outer_limit).to be_an_instance_of Float
+		end
 
- 			it 'with a distance inner limit' do 
- 				expect(compare.inner_limit).to be_an_instance_of Float
- 			end 
- 			
- 		end 	
+		it 'with a distance inner limit' do
+			expect(compare.inner_limit).to be_an_instance_of Float
+		end
 
- 		context 'in order to determine a miss' do
- 			it 'uses inner and outer limits' do
- 				expect(compare.outer_limit).to be_an_instance_of Float
- 				expect(compare.inner_limit).to be_an_instance_of Float
- 			end
+	end
 
- 			it 'a person must pass within the outer limit and outside the inner limit' do
- 				distance_between = compare.outer_limit - compare.inner_limit #ensures changes to the parameters will not break this test
- 				expect(compare.did_they_miss?(distance_between)).to eq true
- 			end
+	context 'in order to determine a miss' do
+		it 'uses inner and outer limits' do
+			expect(compare.outer_limit).to be_an_instance_of Float
+			expect(compare.inner_limit).to be_an_instance_of Float
+		end
 
- 			it 'must not register a miss if a person passes within the inner limit' do
- 				distance_between = compare.inner_limit - (compare.inner_limit/2)
- 				expect(compare.did_they_miss?(distance_between)).to eq false
- 			end
+		it 'a person must pass within the outer limit and outside the inner limit' do
+			distance_between = compare.outer_limit - compare.inner_limit #ensures changes to the parameters will not break this test
+			expect(compare.did_they_miss?(distance_between)).to eq true
+		end
 
- 		end
+		it 'must not register a miss if a person passes within the inner limit' do
+			distance_between = compare.inner_limit - (compare.inner_limit/2)
+			expect(compare.did_they_miss?(distance_between)).to eq false
+		end
 
- 		context 'when comparing timelines, CompareTimelines' do
+	end
 
- 			it 'registers 83 misses' do
- 				expect(compare.misses.length).to eq 83
- 			end
+	context 'when comparing timelines, CompareTimelines' do
 
- 		end
+		it 'registers 83 misses' do
+			expect(compare.misses.length).to eq 83
+		end
+
+	end
 
 end
-
-

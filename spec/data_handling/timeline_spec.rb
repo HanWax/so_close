@@ -17,10 +17,6 @@ describe Timeline do
 		expect(timeline.places).to be_an_instance_of Array
 	end
 
-	it 'should initialize with an empty timeline' do
-		expect(timeline.output).to eq []
-	end
-
 	context 'timelines are initialized with timeslots which' do
 
 		it 'divide the day into 288 5 minute sections' do
@@ -185,5 +181,3 @@ describe Timeline do
 	end
 
 end
-
-

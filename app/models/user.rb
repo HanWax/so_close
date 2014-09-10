@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
 		# case auth_hash["moves"]
 		# when 'moves'
 		uid = auth_hash["uid"].to_s
+		# raise auth_hash['credentials'].inspect
+
 		credentials = ::OauthCredentials.find_or_create_by(uid: uid)
 		credentials.attributes = {
 			provider: auth_hash["provider"],
