@@ -1,5 +1,8 @@
 class User < ActiveRecord::Base
 
+	acts_as_followable
+	acts_as_follower
+
 	def self.find_or_create_from_auth_hash(auth_hash)
 
 		# case auth_hash["moves"]
