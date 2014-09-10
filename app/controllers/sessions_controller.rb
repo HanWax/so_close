@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
 
 			redirect_to '/auth/moves'
 		else
-			redirect_to '/'
+			redirect_to '/bulletins'
 		end
 	end
 

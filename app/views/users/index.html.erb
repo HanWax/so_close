@@ -1,8 +1,15 @@
 <%= form_tag(users_path, :method => "get", id: "search-form") do %>
-  <%= text_field_tag :search, params[:search], placeholder: "Search users" %>
+  <%= text_field_tag :search, params[:search], placeholder: "Search users", required: true %>
   <%= submit_tag "Find friends", :name => nil %>
 <% end %>
+
 <% @users.each do |user| %>
   <%= user.name %>
-  <%= link_to 'Follow', user_follows_path(user), method: :post %>
+  <%= link_to 'Friend', user_follows_path(user), method: :post %>
+<% end %>
+
+<% current_user.all_following.each do |friend| %>
+
+	<li><%= friend.name %></li>
+
 <% end %>
