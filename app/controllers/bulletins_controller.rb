@@ -23,10 +23,11 @@ class BulletinsController < ApplicationController
 		@comparison =  CompareTimelines.new(timeline_a: @neighbour_timeline, timeline_b: @current_user_timeline, current_user: current_user, neighbour: @neighbour, outer_limit: 0.2, inner_limit: 0.02)
 
 		@bulletins = []
-		current_user.misses.each do | miss |
+		@misses = current_user.misses
+
+		@misses.each do |miss|
 			@bulletins << Bulletin.new(miss)
 		end
-
 	end
 
 end

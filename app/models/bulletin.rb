@@ -39,13 +39,13 @@ class Bulletin
 	end
 
 	def distance_converter(distance)
-		if distance >= 20 && distance < 50
+		if distance >= 0.02 && distance < 0.05
 			distance = "a stone's throw"
-		elsif distance >= 50 && distance < 75
+		elsif distance >= 0.05 && distance < 0.075
 			distance = "three blocks"
-		elsif distance >= 75 && distance < 100
+		elsif distance >= 0.075 && distance < 0.1
 			distance = "100 yards"
-		elsif distance >= 100 && distance < 150
+		elsif distance >= 0.1 && distance < 0.15
 			distance = "a football pitch"
 		else
 			distance = "a longbow's range"
