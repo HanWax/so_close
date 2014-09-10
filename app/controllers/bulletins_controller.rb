@@ -25,9 +25,22 @@ class BulletinsController < ApplicationController
 		@bulletins = []
 		@misses = current_user.misses
 
-		@misses.each do |miss|
+		@neighbours = (@misses.map {|miss| miss.neighbour_id}).uniq
+
+		@misses_sorted_by_neighbour = @neighbours.map do |neighbour|
+			@misses.select {|miss| miss.neighbour_id == neighbour}
+		end
+
+		@misses_sorted_by_neighbour_sorted_by_distance = @misses_sorted_by_neighbour.each {|subarray| subarray.sort! {|a, b| a.distance <=> b.distance}}
+
+		@nearest_misses = @misses_sorted_by_neighbour_sorted_by_distance.map {|subarray| subarray.first}
+
+		@bulletins = []
+
+		@nearest_misses.each do |miss|
 			@bulletins << Bulletin.new(miss)
 		end
+
 	end
 
 end

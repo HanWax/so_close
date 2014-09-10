@@ -2,12 +2,14 @@
 	<% if current_user.misses.empty? %>
 		<h3> 'Wow, you need to get out more dude. Like seriously...' </h3>
 
+	<% else %>
+
+		<% @bulletins.each do |bulletin| %>
+
+			<li><%= bulletin.message_randomizer %></li>
+			
+		<% end %>
+
 	<% end %>
-
-	<% @bulletins.each do |bulletin| %>
-
-<h1><%= bulletin.message_randomizer %></h1>
-
-<% end %>
 
 <% end %>
