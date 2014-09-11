@@ -4,23 +4,23 @@ body.logged_out
 	header
 		text-align: center
 
-		figure.logo
-			width: 270px
-			height: 270px
-			margin: 0px auto
-			background: radial-gradient(ellipse at center, rgba(255,255,255,0.2) 0%,rgba(255,255,255,0) 70%,rgba(255,255,255,0) 100%,rgba(255,255,255,0) 102%)
-			img
-				margin: 10px 0px
-				height: 250px
-
 		h1#brand_name
 			font-size: 4.5em
 
+		svg#logo
+			height: 250px
+			padding-top: 40px
+			path
+				fill: rgb(205,49,112)
+				
 	nav .main_nav
 		text-align: center
 		li a
 			font-size: 2em
-			@extend .pulse-animation
+			background-color: rgba(138,135,128, 0.8)
+			background-color: rgba(255, 255, 255, 0.4)
+			border-radius: 10px
+			padding: 10px 20px
+			border: 2px solid #333333
 
-			i.arrow
-				margin-right: -34px
+
