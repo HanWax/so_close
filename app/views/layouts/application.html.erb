@@ -1,48 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="">
-  <meta name="author" content="">
-  <link rel="icon" href="../../favicon.ico">
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-  <title>Mist</title>
-
-</head>
-<body class="<%= "#{controller.controller_name} #{@body_class}".strip %> <%= @current_user ? 'logged_in' : 'logged_out' %>">
-
-      <% if @current_user %>
-        <nav class="navbar">
-          <ul>
-            <li class='logout'>
-              <%= link_to logout_path do%>
-                Log Out
-              <% end %>
-            </li>
-            <li class='Friends'>
-              <a href='#'>Friends</a>
-            </li>
-          </ul>
-        </nav>
-      <% end %>
-
-      <section class="wrapper">
-
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+    <title>Mist</title>
+  </head>
+  <body class="<%= "#{controller.controller_name} #{@body_class}".strip %> <%= @current_user ? 'logged_in' : 'logged_out' %>">
+    <% if @current_user %>
+      <nav class="navbar">
+        <ul>
+          <li class='logout'>
+            <%= link_to logout_path do%>
+              Log Out
+            <% end %>
+          </li>
+          <li class='Friends'>
+            <a href='#'>Friends</a>
+          </li>
+        </ul>
+      </nav>
+    <% end %>
+    <section class="wrapper">
       <header>
-       
-          <%= render "logo" %>
-
+        <%= render "homepage/logo" %>
         <a href="/"><h1 id="brand_name">Mist.</h1></a>
-
       </header>
-
       <main class="content">
         <%= yield %>
       </main>
-
       <% if !@current_user %>
         <nav>
           <ul class="main_nav">
@@ -52,10 +43,9 @@
           </ul>
         </nav>
       <% end %>
-
-    </section> <!-- .wrapper -->
-
-  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-</body>
+    </section>
+    <!-- .wrapper -->
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  </body>
 </html>
