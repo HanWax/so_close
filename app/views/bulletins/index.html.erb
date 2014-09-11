@@ -4,7 +4,7 @@
 
 	<% else %>
 
-		<ul class="bulletins">
+		<ul class="bulletins-list">
 		<% @bulletins.each do |bulletin| %>
 
 			<li><%= bulletin.message_randomizer.html_safe %></li>
