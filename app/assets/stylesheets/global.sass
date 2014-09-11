@@ -7,14 +7,14 @@ img
 	max-width: 100%
 
 body, html
+	background-image: url(p1180711.jpg)
+	background-position: 5.75% 0
 	width: 100%
 	position: relative
 
-	background: #112F41
-
 	@extend .standard-font
 	font-size: 20px
-	color: $yellow
+	color: black
 	line-height: 1.4
 
 .mist
@@ -25,11 +25,8 @@ body, html
 	background-image: linear-gradient(to bottom, #1D4E6B 0%, #112F41 100%)
 
 a
-	color: $yellow
+	color: #333333
 	text-decoration: none
-	transition: 0.5s
-	&:hover, &:focus
-		color: $red
 
 section.wrapper
 	position: relative
@@ -48,5 +45,24 @@ nav .main_nav
 	padding: 0px
 	margin: 0px
 
-i.arrow
-	font-style: normal
+nav.navbar	
+	background-color: #333333
+	overflow: auto
+
+
+	ul
+		margin: 0
+
+		li
+			&.logout a
+				border: 2px solid white
+				border-radius: 10px
+
+			a
+				float: right
+				color: white
+				padding: 10px
+				margin: 10px
+
+
+
