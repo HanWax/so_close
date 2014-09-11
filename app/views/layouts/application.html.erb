@@ -20,10 +20,14 @@
               Log Out
             <% end %>
           </li>
-          <li class='Friends'>
+          <li class='friends'>
             <a href='#'>Friends</a>
           </li>
+          <li class='bulletins'>
+            <%= link_to 'Bulletins', bulletins_path %>
+          </li>
         </ul>
+        <a id="toggle_nav">Menu</a>
       </nav>
     <% end %>
     <section class="wrapper">

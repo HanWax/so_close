@@ -1,12 +1,21 @@
+@import "_branding"
+
 .logged_in
-	
+
 	svg#logo
-		height: 250px
-		padding-top: 40px
+		height: 100px
+		padding-top: 10px
+		margin-left: -10px
+		float: left
 		path
-			fill: rgb(205,49,112)
+			fill: $raspberry
+
+	#brand_name
+		font-size: 1.2em
+		float: left
 
 	main.content
+		// clear: both
 		background: rgba(00,00,00,0.2)
 		margin: 0px -20px
 		padding: 5px 20px
@@ -14,3 +23,9 @@
 	nav .main_nav
 		padding: 10px 0
 		text-align: right
+
+	#search
+		width: 100%
+		margin: 10px 0px
+		border-radius: 10px
+		padding: 5px 10px
