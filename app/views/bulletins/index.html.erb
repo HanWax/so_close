@@ -4,11 +4,13 @@
 
 	<% else %>
 
+		<ul class="bulletins-list">
 		<% @bulletins.each do |bulletin| %>
 
-			<li><%= bulletin.message_randomizer %></li>
-			
+			<li><%= bulletin.message_randomizer.html_safe %></li>
+
 		<% end %>
+		</ul>
 
 	<% end %>
 

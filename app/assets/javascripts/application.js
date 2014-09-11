@@ -13,3 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+
+$('#toggle_nav').click(function(){
+  $('.navbar ul').slideToggle()
+});
