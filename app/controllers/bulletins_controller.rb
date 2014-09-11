@@ -20,34 +20,34 @@ class BulletinsController < ApplicationController
 
 			friends.each do |friend|
 
-					#@neighbour = friends.first
-					friend_moves = Moves::Client.new(friend.moves_token)
-					@friend_timeline = Timeline.new(FormattedData.new(friend_moves.daily_storyline(yesterday, :trackPoints => true)), yesterday)
+				#@neighbour = friends.first
+				friend_moves = Moves::Client.new(friend.moves_token)
+				@friend_timeline = Timeline.new(FormattedData.new(friend_moves.daily_storyline(yesterday, :trackPoints => true)), yesterday)
 
-					@comparison =  CompareTimelines.new(timeline_a: @friend_timeline, timeline_b: @current_user_timeline, current_user: current_user, neighbour: friend, outer_limit: 0.2, inner_limit: 0.02)
+				@comparison =  CompareTimelines.new(timeline_a: @friend_timeline, timeline_b: @current_user_timeline, current_user: current_user, neighbour: friend, outer_limit: 0.2, inner_limit: 0.02)
 
-					@bulletins = []
-					@misses = current_user.misses
+				@bulletins = []
+				@misses = current_user.misses
 
-					@neighbours = (@misses.map {|miss| miss.neighbour_id}).uniq
+				@neighbours = (@misses.map {|miss| miss.neighbour_id}).uniq
 
-					@misses_sorted_by_neighbour = @neighbours.map do |neighbour|
-						@misses.select {|miss| miss.neighbour_id == neighbour}
-					end
+				@misses_sorted_by_neighbour = @neighbours.map do |neighbour|
+					@misses.select {|miss| miss.neighbour_id == neighbour}
+				end
 
-					@misses_sorted_by_neighbour_sorted_by_distance = @misses_sorted_by_neighbour.each {|subarray| subarray.sort! {|a, b| a.distance <=> b.distance}}
+				@misses_sorted_by_neighbour_sorted_by_distance = @misses_sorted_by_neighbour.each {|subarray| subarray.sort! {|a, b| a.distance <=> b.distance}}
 
-					@nearest_misses = @misses_sorted_by_neighbour_sorted_by_distance.map {|subarray| subarray.first}
+				@nearest_misses = @misses_sorted_by_neighbour_sorted_by_distance.map {|subarray| subarray.first}
 
-					@bulletins = []
+				@bulletins = []
 
-					@nearest_misses.each do |miss|
-						@bulletins << Bulletin.new(miss)
-					end
+				@nearest_misses.each do |miss|
+					@bulletins << Bulletin.new(miss)
+				end
 			end
 
 		elsif current_user && !current_user.all_following.any?
-				redirect_to user_follows_path(current_user)
+			redirect_to user_follows_path(current_user)
 		else
 			redirect_to '/auth/facebook'
 		end

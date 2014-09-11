@@ -1,55 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="">
-  <meta name="author" content="">
-  <link rel="icon" href="../../favicon.ico">
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-  <title>Mist</title>
-
-</head>
-<body class="<%= "#{controller.controller_name} #{@body_class}".strip %> <%= @current_user ? 'logged_in' : 'logged_out' %>">
-
-  <section class="mist">
-
-    <section class="wrapper">
-
-      <header>
-
-        <figure class="logo">
-          <%= image_tag("logo/green.png") %>
-        </figure>
-
-        <a href="/"><h1 id="brand_name">Mist</h1></a>
-
-      </header>
-
-      <main class="content">
-        <%= yield %>
-      </main>
-
-      <nav>
-        <ul class="main_nav">
-          <li>
-            <% if @current_user %>
-              <%= link_to 'Log out', logout_path %>
-            <% else %>
-              <%= link_to '/auth/facebook' do %>
-                Sign in <i class="arrow">➔</i>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+    <title>Mist</title>
+  </head>
+  <body class="<%= "#{controller.controller_name} #{@body_class}".strip %> <%= @current_user ? 'logged_in' : 'logged_out' %>">
+    <section class="mist">
+      <section class="wrapper">
+        <header>
+          <figure class="logo">
+            <%= image_tag("logo/green.png") %>
+          </figure>
+          <a href="/"><h1 id="brand_name">Mist</h1></a>
+        </header>
+        <main class="content">
+          <%= yield %>
+        </main>
+        <nav>
+          <ul class="main_nav">
+            <li>
+              <% if @current_user %>
+                <%= link_to 'Log out', logout_path %>
+              <% else %>
+                <%= link_to '/auth/facebook' do %>
+                  Sign in
+                  <i class="arrow">➔</i>
+                <% end %>
               <% end %>
-            <% end %>
-          </li>
-        </ul>
-      </nav>
-
-    </section> <!-- .wrapper -->
-
-  </section> <!-- /.mist -->
-  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-</body>
+            </li>
+          </ul>
+        </nav>
+      </section>
+      <!-- .wrapper -->
+    </section>
+    <!-- /.mist -->
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  </body>
 </html>
