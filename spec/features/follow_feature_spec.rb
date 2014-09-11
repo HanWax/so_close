@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+
 describe 'follows' do
 
 	before(:all) do
@@ -22,6 +23,27 @@ describe 'follows' do
 			}
 		)
 
+	end
+
+	after(:all) do
+		OmniAuth.config.test_mode = false
+	end
+
+	before do
+		User.create(:name => 'Eddie', uid: '1234567890987')
+		User.create(:name => 'Charles', uid: '1234567809832745')
+	end
+
+	context 'searching for friends' do
+		it 'should return the search results based on the search term used' do
+			visit '/auth/facebook'
+			visit '/auth/moves'
+			visit '/users'
+			fill_in 'search', with: 'e'
+			click_button('Find friends')
+			save_and_open_page
+			expect(page).to have_content('Eddie')
+		end
 	end
 
 end
