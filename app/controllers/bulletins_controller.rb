@@ -47,7 +47,7 @@ class BulletinsController < ApplicationController
 			end
 
 		elsif current_user && !current_user.all_following.any?
-			redirect_to user_follows_path(current_user)
+			redirect_to users_path
 		else
 			redirect_to '/auth/facebook'
 		end
