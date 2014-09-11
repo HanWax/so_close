@@ -4,19 +4,22 @@
 
 	svg#logo
 		height: 100px
-		padding-top: 10px
-		margin-left: -10px
-		float: left
+		// padding-top: 10px
+		// margin-left: -10px
+		// float: left
+		position: absolute
+		bottom: 10px
+		right: 10px
 		path
 			fill: $raspberry
 
 	#brand_name
 		font-size: 1.2em
 		float: left
+		margin-top: 10px
 
 	main.content
 		// clear: both
-		background: rgba(00,00,00,0.2)
 		margin: 0px -20px
 		padding: 5px 20px
 
@@ -27,5 +30,22 @@
 	#search
 		width: 100%
 		margin: 10px 0px
-		border-radius: 10px
+		// border-radius: 10px
 		padding: 5px 10px
+		color: #333
+		border: 0px
+::-webkit-input-placeholder
+	color: #333
+
+.bulletins
+	clear: both
+	padding: 0
+	margin: 0
+	li
+		background: rgba(240,240,240,0.3)
+		border-radius: 5px
+		margin: 7px 0px
+		padding: 8px
+		list-style-type: none
+		strong
+			color: $raspberry
