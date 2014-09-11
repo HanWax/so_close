@@ -34,6 +34,7 @@ gem 'fb_graph2'
 gem 'fb_graph'
 gem 'httparty'
 gem "acts_as_follower"
+gem 'heroku_secrets', :github => 'alexpeattie/heroku_secrets'
 
 group :development, :test do
 	gem 'rspec-rails'

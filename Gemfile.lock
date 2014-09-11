@@ -1,4 +1,10 @@
 GIT
+  remote: git://github.com/alexpeattie/heroku_secrets.git
+  revision: 717af8e0acf399bc88d2c8c1a7e230023942af0f
+  specs:
+    heroku_secrets (0.0.2)
+
+GIT
   remote: https://github.com/nickelser/omniauth-moves
   revision: 17f8e1c1fc97b7ad0101beedfab088c142e89b57
   specs:
@@ -255,6 +261,7 @@ DEPENDENCIES
   factory_girl_rails (~> 4.0)
   fb_graph
   fb_graph2
+  heroku_secrets!
   hirb
   httparty
   jbuilder (~> 2.0)
