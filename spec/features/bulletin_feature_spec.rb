@@ -40,7 +40,7 @@ describe 'bulletins' do
 			visit '/auth/facebook'
 			visit '/auth/moves'
 			visit '/bulletins'
-			expect(page).to have_content 'Wow, you need to get out more dude. Like seriously...'
+			expect(page).to have_content "Strangely we can't find any near-misses for you, perhaps you ought to spend less time in dark alleys and get out into the sun eh?"
 		end
 
 	end
