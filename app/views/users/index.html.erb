@@ -1,15 +1,32 @@
 <%= form_tag(users_path, :method => "get", id: "search-form") do %>
-  <%= text_field_tag :search, params[:search], placeholder: "Search users", required: true %>
-  <%= submit_tag "Find friends", :name => nil %>
+
+  <fieldset>
+	  <%= text_field_tag :search, params[:search], placeholder: "Search for Friends", required: true %>
+	<%= button_tag :name => nil do %>
+	<%= image_tag "ico_search.png" %>
+  </fieldset>
+
+  <% end %>
 <% end %>
+
+<ul class="friend-list">
 <% @users.each do |user| %>
-  <%= user.name %>
-  <%= link_to 'Friend', user_follows_path(user), method: :post %>
+	<li>
+	 	<%= link_to(user_follows_path(user), method: :post) do %>
+			<%= user.name %>
+			<%= image_tag "ico_plus.png" %>
+		<% end %>
+	</li>
 <% end %>
+
 <% if !current_user.all_following.empty? %>
   <% current_user.all_following.each do |friend| %>
-    <li><%= friend.name %>
-      <%= link_to 'Un-friend', user_follow_path(friend, (current_user.follows.find_by(followable_id: friend.id)).id), method: :delete %>
+    <li>
+      	<%= link_to(user_follow_path(friend, (current_user.follows.find_by(followable_id: friend.id)).id), method: :delete) do %>
+    		<%= friend.name %>
+    		<%= image_tag "ico_minus.png", class: 'ico-minus' %>
+		<% end %>
     </li>
   <% end %>
 <% end %>
+</ul>

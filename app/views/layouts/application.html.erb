@@ -27,13 +27,17 @@
             <%= link_to 'Bulletins', bulletins_path %>
           </li>
         </ul>
-        <a id="toggle_nav">Menu</a>
+        <menu id="toggle_nav">
+          <%= link_to 'Mist.', bulletins_path, class: 'brand_name' %>
+          Menu
+        </menu>
       </nav>
     <% end %>
+
     <section class="wrapper">
       <header>
         <%= render "homepage/logo" %>
-        <a href="/"><h1 id="brand_name">Mist.</h1></a>
+        <a href="/" class="logo_link"><h1 class="brand_name">Mist.</h1></a>
       </header>
       <main class="content">
         <%= yield %>
