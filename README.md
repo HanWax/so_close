@@ -1,9 +1,6 @@
 Team Mist - Makers Academy Final Project
 ========================================
 
-Mist homepage: ![alt text](./app/images/mist_homepage.png = 100x20px)
-Mist bulletins page: ![alt text](./app/images/mist_bulletin.png = 100x20px)
-
 Objectives
 -----------
 * To create an app that informs users as to whom they almost bumped in to on the previous day
