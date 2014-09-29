@@ -1,8 +1,8 @@
 Team Mist - Makers Academy Final Project
 ========================================
 
-Mist homepage: ![alt text](./app/images/mist_homepage.png)
-Mist bulletins page: ![alt text](./app/images/mist_bulletin.png)
+Mist homepage: ![alt text](./app/images/mist_homepage.png = 100x20px)
+Mist bulletins page: ![alt text](./app/images/mist_bulletin.png = 100x20px)
 
 Objectives
 -----------
