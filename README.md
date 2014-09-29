@@ -1,6 +1,9 @@
 Team Mist - Makers Academy Final Project
 ========================================
 
+Mist homepage: ![alt text](app/images/mist_homepage.png)
+Mist bulletins page: ![alt text](app/images/mist_bulletin.png)
+
 Objectives
 -----------
 * To create an app that informs users as to whom they almost bumped in to on the previous day
@@ -48,6 +51,13 @@ How to use
 2. Sign in to our app at just-mist.herokuapp.com, first through Facebook, and then by entering in the Moves PIN code in your Moves App.
 3. Search for friends who are also using Team Mist's app and add them.
 4. On the next day, check out the bulletins page to see whether you had any near misses.
+
+My contribution
+---------------
+* I paired with [Michiel Stigter](https://github.com/michielstigter) and [Thomas Beeley](https://github.com/tbeeley) to work out how to take the data from the Moves App and integrate it into our Rails app
+* I paired with [Michiel Stigter](https://github.com/michielstigter) on integrating the various omniauth logins into our app. We had two omniauth logins - first through Facebook and then through Moves
+* I paired with [Charlie Redwood](https://github.com/M-E-T-H-O-Dman) to create a social network, where users could follow other users.
+* I paired with [Edward Andress](https://github.com/EdwardAndress) to test-drive and write the timeline comparison algorithms.
 
 Next steps
 ----------
