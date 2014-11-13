@@ -49,12 +49,18 @@ How to use
 3. Search for friends who are also using Team Mist's app and add them.
 4. On the next day, check out the bulletins page to see whether you had any near misses.
 
-My contribution
+Hannah's contribution
 ---------------
 * I paired with [Michiel Stigter](https://github.com/michielstigter) and [Thomas Beeley](https://github.com/tbeeley) to work out how to take the data from the Moves App and integrate it into our Rails app
 * I paired with [Michiel Stigter](https://github.com/michielstigter) on integrating the various omniauth strategies into our app. We had two omniauth logins - first through Facebook and then through Moves.
 * I paired with [Charlie Redwood](https://github.com/M-E-T-H-O-Dman) to create a social network, where users could follow other users.
 * I paired with [Edward Andress](https://github.com/EdwardAndress) to test-drive and write the timeline comparison algorithms.
+
+
+Zoe's contribution
+---------------
+I focussed on the timeline comparison algorithm with Charlie and Edward. I followed it through from exploring how to compare the data, to the final TDD'd and nice version in this rails app. A finer explanation of the algorithm and the challenges we faced is on the README in the [exploratory code](https://github.com/zoeabryant/ma-final-examples).
+
 
 Next steps
 ----------
