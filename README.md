@@ -59,7 +59,7 @@ Hannah's contribution
 
 Zoe's contribution
 ---------------
-I focussed on the timeline comparison algorithm with Charlie and Edward. I followed it through from exploring how to compare the data, to the final TDD'd and nice version in this rails app. A finer explanation of the algorithm and the challenges we faced is on the README in the [exploratory code](https://github.com/zoeabryant/ma-final-examples).
+I focussed on the timeline comparison algorithm with [Charlie Redwood](https://github.com/M-E-T-H-O-Dman) and [Edward Andress](https://github.com/EdwardAndress). I followed it through from exploring how to compare the data, to the final TDD'd and nice version in this rails app. A finer explanation of the algorithm and the challenges we faced is on the README in the [exploratory code](https://github.com/zoeabryant/ma-final-examples).
 
 
 Next steps
